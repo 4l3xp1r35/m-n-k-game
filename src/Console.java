@@ -13,6 +13,9 @@ import static java.lang.Math.pow;
 public class Console {
     private Board board;
     private Scanner sc = new Scanner(System.in);
+    private int turnPlayer1;
+    private int turnPlayer2;
+
 
     /**
      * Permite ao utilizador escolher o tamanho da board e a sequencia  para ganhar
@@ -25,6 +28,16 @@ public class Console {
             int N = sc.nextInt();
             System.out.println("Please enter the target sequence length for a win (K): ");
             int K = sc.nextInt();
+            System.out.println("Please choose the player 1 (just put the number of player you want): ");
+            System.out.println("1-Random player");
+            System.out.println("2-Human player");
+            System.out.println("3-Ai(MinMax alfa beta pruning) player");
+            turnPlayer1=sc.nextInt();
+            System.out.println("Please choose the player 2 (just put the number of player you want): ");
+            System.out.println("1-Random player");
+            System.out.println("2-Human player");
+            System.out.println("3-Ai(MinMax alfa beta pruning) player");
+            turnPlayer2=sc.nextInt();
             int vp;
             if (M == N) {
                 vp = 2 * ((int) pow(((M - K) + 1), 2)) + 2 * M * ((M - K) + 1);
@@ -58,14 +71,20 @@ public class Console {
     	int position;
     	
         if (board.getTurn() == Ilayout.ID.X) {
+            position = XAgent.play(board);
+            if(turnPlayer1==2)
+            position=getHumanMove();
+            if(turnPlayer1==3)
             position=MinMaxABAgent.play(board);
-        	//position=getHumanMove();
-        	//position = XAgent.play(board);
+        	
         	board.move(position);
  
         } else {
-        	//position = XAgent.play(board);
-            position = MinMaxABAgent.play(board);
+        	position = XAgent.play(board);
+            if(turnPlayer2==2)
+            position=getHumanMove();
+            if(turnPlayer2==3)
+            position=MinMaxABAgent.play(board);
         	board.move(position);
         }
     }
@@ -113,13 +132,34 @@ public class Console {
     public static void main(String[] args)  {
     	    final int repetitions=1;
     	    long times = 0;
+            Scanner sc = new Scanner(System.in);
 
     	    for(int i=0; i<repetitions; i++) {
-    	    	Console game = new Console(false);
-	    	    long startTime = System.currentTimeMillis();
-	    	    game.play();      	
-	    	    long totalTime = System.currentTimeMillis() - startTime;
-	    	    times += totalTime;
+                System.out.println("Do you want to manually set the game settings in the iLayout interface, or would you prefer to enter them in the console as the prompts appear?");
+                System.out.println("1-manualy");
+                System.out.println("2-console");
+                int choose=sc.nextInt();
+                System.out.println("resposta: "+choose);
+                if(choose==0||choose>=3){
+                    System.out.println("Invalid number");
+                }
+
+                Console game;
+                if (choose==1) {
+                    game = new Console(false);
+                    long startTime = System.currentTimeMillis();
+                    game.play();
+                    long totalTime = System.currentTimeMillis() - startTime;
+                    times += totalTime;
+                }else if (choose==2) {
+                    game = new Console(true);
+                    long startTime = System.currentTimeMillis();
+                    game.play();
+                    long totalTime = System.currentTimeMillis() - startTime;
+                    times += totalTime;
+                }
+
+                sc.close();
     	    }
     	    System.out.println("Av Time: " + times*1.0f/repetitions+ " milisecs");
 
