@@ -21,23 +21,20 @@ h=B−A−C, where:
 * C for the opponent. This heuristic approach allows the agent to quickly assess the board and make informed strategic decisions.
 
 ## How to Run the Code and Operation
-  * Prerequisites
-    
-    Ensure Java is installed on your machine. If not, download and follow the installation instructions on the official Java website.
-  * Execution
-    
-    Open the terminal or command prompt.
-    
-    Navigate to the directory where the Console.java file is saved.
-    
-    Compile the file using the Java compiler with the command:
-    
-        javac Console.java
-    
-    Run the game with the command:
-    
-        java Console
-    
-  * Operation
+### Prerequisites
+   Ensure Java is installed on your machine. If not, download and follow the installation instructions on [official Java website](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 
-    The game starts in the console, with user interaction through terminal inputs. I am guided through the options available, including choosing the type of player (Human, Random, or AI with Minimax and Alpha-Beta Pruning) and making moves when it's my turn.
+### Execution
+   Open the terminal or command prompt.
+   Navigate to the directory where the Console.java file is saved.
+    
+   Compile the file using the Java compiler with the command:
+        
+    javac Console.java
+    
+   Run the game with the command:
+    
+    java Console
+    
+### Operation
+  The game starts in the console, with user interaction through terminal inputs. I am guided through the options available, including choosing the type of player (Human, Random, or AI with Minimax and Alpha-Beta Pruning) and making moves when it's my turn.
